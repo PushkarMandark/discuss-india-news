@@ -18,7 +18,7 @@ export default class NewsItem extends Component {
           <div className="card-body">
             <span
               style={{ left: "87%" }}
-              class="position-absolute top-0  translate-middle badge rounded-pill bg-danger"
+              className="position-absolute top-0  translate-middle badge rounded-pill bg-danger"
             >
               {newsSource ? newsSource : "unknown"}
             </span>
