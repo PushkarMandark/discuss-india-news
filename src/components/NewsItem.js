@@ -37,7 +37,7 @@ export default class NewsItem extends Component {
               target="_blank"
               rel="noreferrer"
             >
-              Read More..
+              Read More...
             </a>
           </div>
         </div>
