@@ -22,29 +22,39 @@ export default class News extends Component {
   }
 
   async componentDidMount() {
+    this.props.setProgress(0);
     this.setState({ loading: true });
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76ad31b4139a4d3fa94807df259870cc&page=1&pageSize=${this.props.pageSize}`;
+    this.props.setProgress(30);
     const data = await fetch(url);
     const parseData = await data.json();
+    this.props.setProgress(50);
     this.setState({ loading: false });
+    this.props.setProgress(60);
     console.log(parseData);
     this.setState({
       articles: parseData.articles,
       totalResults: parseData.totalResults,
     });
+    this.props.setProgress(100);
   }
 
   fetchMoreData = async () => {
+    this.props.setProgress(0);
     this.setState({ page: this.state.page + 1 });
+
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=76ad31b4139a4d3fa94807df259870cc&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    this.props.setProgress(30);
     const data = await fetch(url);
     const parseData = await data.json();
+    this.props.setProgress(60);
     this.setState({ loading: false });
     console.log(parseData);
     this.setState({
       articles: this.state.articles.concat(parseData.articles),
       totalResults: parseData.totalResults,
     });
+    this.props.setProgress(100);
   };
 
   // handlePrevious = async () => {
